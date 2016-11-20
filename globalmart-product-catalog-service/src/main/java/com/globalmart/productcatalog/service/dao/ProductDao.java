@@ -52,9 +52,17 @@ public class ProductDao implements ProductDaoI {
 		session.merge(product);
 		tx.commit();
 		
+		// The saved product doesn't outlive this session. Not really sure why? Needs thorough study on in-memory databases.
+		// Hence had to make this query separately instead of using getProductById() method.
+		Query query = session.createQuery("from com.globalmart.product.common.entity.Product p where p.id = :id");
+		query.setParameter("id", product.getId());
+
+		List<?> products = query.list();
+		Product result = (Product) products.get(0);
+		
 		session.close();
 		
-		return product;
+		return result;
 	}
 
 	@Override
