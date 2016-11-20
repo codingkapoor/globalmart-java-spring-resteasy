@@ -10,7 +10,7 @@ $ cd globalmart-product-catalog-service
 $ mvn install
 ```
 # Deploy
-Deploy WARson JBoss or Tomcat.
+Deploy WARs on JBoss or Tomcat.
 
 # Restful
 ```
